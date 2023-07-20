@@ -1,6 +1,6 @@
 {
   "name": "nuxt-parallel-limit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "description": "Run multiple fetch with limited concurrency",
   "packageManager": "pnpm@8.6.3",
