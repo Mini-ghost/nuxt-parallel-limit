@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "nuxt-parallel-limit-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "nuxt": "^3.6.4",
+    "nuxt-parallel-limit": "latest"
+  }
+}

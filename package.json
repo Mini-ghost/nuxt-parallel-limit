@@ -1,0 +1,64 @@
+{
+  "name": "nuxt-parallel-limit",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Run multiple fetch with limited concurrency",
+  "packageManager": "pnpm@8.6.3",
+  "keywords": [
+    "nuxt",
+    "module",
+    "nuxt-module",
+    "parallel-limit",
+    "ratelimit"
+  ],
+  "author": {
+    "name": "Alex Liu <dsa1314@gmail.com>",
+    "url": "https://github.com/Mini-ghost"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm dev:prepare && nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:prepare": "pnpm nuxt-module-build --stub && nuxi prepare playground",
+    "lint": "pnpm lint:all:eslint && pnpm lint:all:prettier",
+    "lint:all:eslint": "pnpm lint:eslint --ext .ts,.js,.mjs,.cjs .",
+    "lint:all:prettier": "pnpm lint:prettier \"{src,test}/**/*.{js,json,ts}\"",
+    "lint:eslint": "eslint --fix",
+    "lint:prettier": "prettier --write --log-level warn",
+    "prepack": "pnpm build",
+    "prepare": "husky install",
+    "release": "bumpp && npm publish",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.6.4",
+    "husky": "^8.0.3",
+    "pathe": "^1.1.1",
+    "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.4.0",
+    "@nuxt/schema": "^3.6.4",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "nuxt": "^3.6.4",
+    "typescript": "^5.1.6"
+  },
+  "resolutions": {
+    "nuxt-parallel-limit": "link:."
+  }
+}
