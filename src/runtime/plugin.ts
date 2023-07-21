@@ -27,7 +27,10 @@ export default defineNuxtPlugin(() => {
       limitMap.set(pattern.pattern, (limit = pLimit(pattern.limit)));
     }
 
-    return limit(() => $fetch(...args));
+    return limit(() => $fetch(...args)
+      .finally(() => {
+        if(limit?.pendingCount === 0) limitMap.delete(pattern.pattern);
+      }));
   }) as typeof $fetch;
 
   Object.assign(globalThis.$fetch, $fetch);
