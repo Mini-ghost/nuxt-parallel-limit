@@ -1,5 +1,4 @@
 import pLimit from "p-limit";
-
 import { defineNuxtPlugin } from "#imports";
 import { options } from "#parallel-limit-options";
 
@@ -14,7 +13,9 @@ export default defineNuxtPlugin(() => {
   globalThis.$fetch = ((
     ...args: Parameters<typeof $fetch>
   ): ReturnType<typeof $fetch> => {
-    const [url] = args;
+    const [request] = args;
+
+    const url = request instanceof Request ? request.url : request;
 
     const pattern = patterns.find(({ pattern }) =>
       new RegExp(pattern).test(url),
