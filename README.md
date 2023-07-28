@@ -45,12 +45,12 @@ export default defineNuxtConfig({
 `pattern`:
 
 - Type: `string`
-- Details: The `pattern` attribute specifies a regular expression the
+- Details: The `pattern` specifies a regular expression the fetch url should match. If the fetch url matches the specified `pattern`, the fetch will be limited by the `limit` attribute.
 
 `limit`:
 
 - Type: `number`
-- Details: Limit the maximum number of concurrent
+- Details: Limit the maximum number of concurrent.
 
 ## Development
 

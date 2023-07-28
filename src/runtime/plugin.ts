@@ -14,8 +14,12 @@ export default defineNuxtPlugin(() => {
   const { patterns } = options;
   if (!patterns.length) return;
 
-  globalThis.$fetch = ((...args: Parameters<typeof $fetch>): ReturnType<typeof $fetch> => {
-    const [url] = args;
+  globalThis.$fetch = ((
+    ...args: Parameters<typeof $fetch>
+  ): ReturnType<typeof $fetch> => {
+    const [request] = args;
+
+    const url = request instanceof Request ? request.url : request;
 
     const pattern = patterns.find(({ pattern }) =>
       new RegExp(pattern).test(url),
@@ -28,7 +32,10 @@ export default defineNuxtPlugin(() => {
       limitMap.set(pattern.pattern, (limit = pLimit(pattern.limit)));
     }
 
-    return limit(() => $fetch(...args));
+    return limit(() => $fetch(...args)
+      .finally(() => {
+        if(limit?.pendingCount === 0) limitMap.delete(pattern.pattern);
+      }));
   }) as typeof $fetch;
 
   if (process.server) {
@@ -37,3 +44,4 @@ export default defineNuxtPlugin(() => {
 
   Object.assign(globalThis.$fetch, $fetch);
 });
+
