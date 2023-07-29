@@ -37,9 +37,7 @@
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --log-level warn",
     "prepack": "pnpm build",
-    "prepare": "npx husky install",
-    "release": "bumpp && npm publish",
-    "postinstall": "npx husky install"
+    "release": "bumpp && npm publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.6.4",
