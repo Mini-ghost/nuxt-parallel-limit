@@ -1,14 +1,18 @@
 import pLimit from "p-limit";
+
 import { defineNuxtPlugin } from "#imports";
 import { options } from "#parallel-limit-options";
 
+import type { $Fetch, NitroFetchRequest } from 'nitropack'
+
+const limitMap = new Map<string, ReturnType<typeof pLimit>>();
+
 export default defineNuxtPlugin(() => {
+  const $fetch = globalThis.$fetch as $Fetch<unknown, NitroFetchRequest> & { _limit?: boolean };
+  if (process.server && $fetch._limit) return
+
   const { patterns } = options;
   if (!patterns.length) return;
-
-  const { $fetch } = globalThis;
-
-  const limitMap = new Map<string, ReturnType<typeof pLimit>>();
 
   globalThis.$fetch = ((
     ...args: Parameters<typeof $fetch>
@@ -34,5 +38,10 @@ export default defineNuxtPlugin(() => {
       }));
   }) as typeof $fetch;
 
+  if (process.server) {
+    $fetch._limit = true
+  }
+
   Object.assign(globalThis.$fetch, $fetch);
 });
+
