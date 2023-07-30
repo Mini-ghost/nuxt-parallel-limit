@@ -40,7 +40,7 @@
     "release": "bumpp && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.6.4",
+    "@nuxt/kit": "^3.6.5",
     "p-limit": "^4.0.0",
     "pathe": "^1.1.1"
   },
