@@ -40,20 +40,20 @@
     "release": "bumpp && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.6.4",
+    "@nuxt/kit": "^3.6.5",
     "p-limit": "^4.0.0",
     "pathe": "^1.1.1"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.4.0",
-    "@nuxt/schema": "^3.6.4",
+    "@nuxt/schema": "^3.6.5",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "bumpp": "^9.1.1",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "nuxt": "^3.6.4",
+    "nuxt": "^3.6.5",
     "prettier": "^3.0.0",
     "typescript": "^5.1.6"
   },
